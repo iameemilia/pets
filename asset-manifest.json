@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/foralfa/static/css/main.9b6a36e3.css",
+    "main.js": "/foralfa/static/js/main.791de7ce.js",
+    "index.html": "/foralfa/index.html",
+    "main.9b6a36e3.css.map": "/foralfa/static/css/main.9b6a36e3.css.map",
+    "main.791de7ce.js.map": "/foralfa/static/js/main.791de7ce.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9b6a36e3.css",
+    "static/js/main.791de7ce.js"
+  ]
+}
