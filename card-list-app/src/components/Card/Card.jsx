@@ -1,20 +1,22 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { toggleFavorite, removeCard } from '../../store/actions';
-import './Card.css'; // Добавьте стили
+import { toggleLike, removeDog } from '../../redux/actions';
+import './Card.css';
 
-const Card = ({ card }) => {
+const Card = ({ dog }) => {
     const dispatch = useDispatch();
 
     return (
         <div className="card">
-            <img src={card.url} alt="dog" />
+            <img src={dog.url} alt="Dog" />
             <div className="card-info">
-                <button onClick={() => dispatch(toggleFavorite(card.id))}>
-                    {card.isFavorited ? '❤️' : '🖤'}
+
+                <button onClick={() => dispatch(toggleLike(dog.id))}>
+                    {dog.liked ? '❤️' : '🖤'}
                 </button>
-                <button onClick={() => dispatch(removeCard(card.id))}>🗑️</button>
+                <button onClick={() => dispatch(removeDog(dog.id))}>❌</button>
             </div>
+
         </div>
     );
 };

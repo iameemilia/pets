@@ -1,21 +1,35 @@
-import React, { useState } from 'react';
-import { Provider } from 'react-redux';
-import store from './store/store';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
+import { addDogs } from './redux/actions';
 import CardList from './components/CardList/CardList';
 import FilterButton from './components/FilterButton/FilterButton';
-import './App.css'; // Добавьте стили
+import './App.css';
 
 const App = () => {
-  const [showFavorites, setShowFavorites] = useState(false);
+  const dispatch = useDispatch();
+  const [showLiked, setShowLiked] = useState(false);
+
+  useEffect(() => {
+    const fetchDogs = async () => {
+      const response = await axios.get('https://api.thedogapi.com/v1/images/search?limit=10');
+      const dogs = response.data.map(dog => ({ id: dog.id, url: dog.url, liked: false, breed: 'Bengal' }));
+      dispatch(addDogs(dogs));
+    };
+
+    fetchDogs();
+  }, [dispatch]);
+
+  const toggleShowLiked = () => {
+    setShowLiked(prev => !prev);
+  };
 
   return (
-    <Provider store={store}>
-      <div className="app">
-        <h1>Dog Gallery</h1>
-        <FilterButton showFavorites={showFavorites} setShowFavorites={setShowFavorites} />
-        <CardList showFavorites={showFavorites} />
-      </div>
-    </Provider>
+    <div className="App">
+      <h1>Dog Gallery</h1>
+      <FilterButton toggleShowLiked={toggleShowLiked} showLiked={showLiked} />
+      <CardList showLiked={showLiked} />
+    </div>
   );
 };
 

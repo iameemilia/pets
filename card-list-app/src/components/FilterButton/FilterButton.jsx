@@ -1,16 +1,10 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import './FilterButton.css';
 
-const FilterButton = ({ showFavorites, setShowFavorites }) => {
-    const dispatch = useDispatch();
-
-    const handleClick = () => {
-        setShowFavorites(!showFavorites);
-    };
-
+const FilterButton = ({ toggleShowLiked, showLiked }) => {
     return (
-        <button onClick={handleClick}>
-            {showFavorites ? 'Показать все' : 'Показать только избранные'}
+        <button onClick={toggleShowLiked} className="filter-button">
+            {showLiked ? 'Показать все' : 'Показать только избранные'}
         </button>
     );
 };
